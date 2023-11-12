@@ -8,6 +8,7 @@ export const GetTropos = async() => {
     })
     const tropo = results.map(t => {
         return {
+            slug: t.properties.slug.formula.string,
             tropo: t.properties.Tropo.title[0].plain_text,
             season: t.properties.Temporada.number,
             episode: t.properties.Episodio.number,
