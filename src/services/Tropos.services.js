@@ -2,10 +2,20 @@ import { notion } from '../config';
 
 const DATABASE_ID = process.env.DATABASE_ID;
 
-export const GetTropos = async() => {
-    const { results } = await notion.databases.query({
-        database_id: DATABASE_ID,
-    })
+export const GetTropos = async({filterBy} = {}) => {
+    const query = { database_id: DATABASE_ID };
+
+    if(filterBy){
+        query.filter = {
+            property: 'slug',
+            rich_text: {
+                equals: filterBy
+            }
+        }
+    }
+
+    const { results } = await notion.databases.query(query);
+
     const tropo = results.map(t => {
         return {
             slug: t.properties.slug.formula.string,
@@ -15,6 +25,7 @@ export const GetTropos = async() => {
             denomination: t.properties.Denominacion.rich_text[0]?.plain_text,
             description: t.properties.Descripcion.select.name
         }
-    })
+    });
+    
     return tropo;
 }
