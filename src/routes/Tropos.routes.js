@@ -4,9 +4,13 @@ import { getTropo, getTropos } from "../controllers/Tropo.controllers";
 const router = Router();
 
 router.route('/')
-    .get(getTropos)
+    .get(
+        getTropos
+    )
 
 router.route('/:id')
-    .get(getTropo)
+    .get(
+        getTropo
+    )
 
 export default router;

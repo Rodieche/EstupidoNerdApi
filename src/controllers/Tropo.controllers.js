@@ -1,4 +1,4 @@
-import { GetTropos } from "../services/Tropos.services"
+import { GetTropos } from "../services"
 
 export const getTropos = async (req, res) => {
     const tropos = await GetTropos();
