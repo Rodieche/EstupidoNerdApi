@@ -2,6 +2,8 @@ import express from 'express';
 import cors from 'cors';
 import morgan from 'morgan';
 
+import TropoRoutes from '../routes/Tropos.routes';
+
 export class Server{
 
     app = express();
@@ -24,7 +26,7 @@ export class Server{
     }
 
     routes(){
-
+        this.app.use('/tropos', TropoRoutes);
     }
 
     start(){
